@@ -1,31 +1,38 @@
-import React, {useState} from 'react'
+import React,{useState, useContext} from 'react'
 import { Link } from "react-router-dom";
+import { DataContext } from '../../context/DataContext'
 import './Login.css'
 
 const Login = () => {
-
-// State para iniciar sesión
 const [user, setUser] = useState({
     email: "",
     password: ""
   });
+const [err, setError] = useState(false)
 
-  const { email, password } = user;
+const { email, password } = user;
+
+const { LoginUser } = useContext( DataContext )
 
   const OnChange = (e) => {
     setUser({
       ...user,
       [e.target.name]: e.target.value,
     });
-   
+    setError(false)
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
+    if(!email || !password)
+    return setError(true)
   };
 
   const handleLogin = () => {
-    console.log(user)
+    if(email && password){
+      LoginUser(user)
+    }
+    
   }
 
  return (
@@ -67,6 +74,8 @@ const [user, setUser] = useState({
             onClick={(e)=>handleLogin(e)}
           />
         </form>
+        <br/>
+        {err && <div className='mx-auto text-center'><span className='text-center text-danger mb-1'>Los campos son obligatorios</span></div>}
           <Link to={"/register"} className="enlace-cuenta">No tenes cuenta? Registrate</Link>
           <Link to={"/forgot"} className="enlace-cuenta">Olvidaste tu contraseña?</Link>
       </div>

@@ -1,0 +1,19 @@
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 100px;
+}
+
+.GreenSpan {
+  padding-left: 30px;
+  font-size: 30px;
+  color: green;
+}
+
+.BlackSpan {
+  font-size: 30px;
+}
+
+.imgWorld {
+  padding-left: 20px;
+}
