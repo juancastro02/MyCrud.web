@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react'
 import { Link } from "react-router-dom";
 import { DataContext } from '../../context/DataContext'
-import './Register.css'
+import '../../styles.css'
 
 const Register = () => {
 

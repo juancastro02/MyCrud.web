@@ -1,4 +1,4 @@
-import React,{ createContext, useState } from "react";
+import React,{ createContext, useState, useEffect } from "react";
 import axios from 'axios'
 
 export const DataContext = createContext()
@@ -12,7 +12,22 @@ export const DataProvider = ({ children }) => {
         "token": ""
     })
 
+    const [products, setProducts] = useState([])
+
     let mensaje;
+
+    const GetProducts = () => {
+
+        axios.get('http://localhost:4000/product')
+        .then((productos) => {
+            setProducts(productos.data)
+            
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+
+    }
 
     const LoginUser = (datos) => {
 
@@ -42,17 +57,24 @@ export const DataProvider = ({ children }) => {
            console.log(mensaje)
         })
         .catch((err) => {
-           mensaje = err.response.data.message
-           console.log(mensaje)
+            
+           console.log(err)
         })
     }
+
+
+    useEffect(() => {
+        GetProducts()
+       
+    }, [products])
 
      
   return(
       <DataContext.Provider value={{
         LoginUser,
         dataUser,
-        RegisterUser
+        RegisterUser,
+        products
         
       }}>
           {children}
