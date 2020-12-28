@@ -1,8 +1,26 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React,{useContext} from 'react'
+import { Link } from "react-router-dom";
+import { DataContext } from '../../context/DataContext'
 import './navbar.css'
 
-const Navbar = () => {
+const Navbar = ({history}) => {
+  
+  const token = localStorage.getItem("token")
+  const email = localStorage.getItem("email")
+  const admin = localStorage.getItem("admin")
+  const { dataUser } = useContext( DataContext )
+
+  console.log(admin)
+
+  const cerrarSesion = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("admin");
+    localStorage.removeItem("email");
+    history.push('/login')
+
+  }
+
+
     return (
  <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -15,6 +33,11 @@ const Navbar = () => {
   </button>
   <div class="nav collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
+      {
+      email && <li class="nav-item active" style={{paddingTop: "10px", paddingRight: "10px"}} >
+         <h5>Bienvenido { dataUser.email || email }</h5>
+        </li>
+      }
      
       <li class=" nav-item dropdown">
         <Link class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -24,9 +47,35 @@ const Navbar = () => {
         <Link class="dropdown-item" to='/' >
               Home 
           </Link>
-          <Link class="dropdown-item" to='/login' >
-              Login 
+        {
+          admin  &&  <Link class="dropdown-item" to='/create' >
+          Crear un producto 
           </Link>
+        }  
+
+        {
+          admin  &&  <Link class="dropdown-item" to='/update' >
+          Modificar un producto 
+          </Link>
+        }  
+
+        {
+          admin  &&  <Link class="dropdown-item" to='/delete' >
+          Eliminar un producto
+          </Link>
+        }  
+
+
+        {
+          !token &&  <Link class="dropdown-item" to='/login' >
+          Login 
+          </Link>
+        }  
+        {
+          token &&  <Link class="dropdown-item" onClick={() => cerrarSesion()}  >
+          Cerrar sesión
+          </Link>
+        } 
 
         </div>
       </li>

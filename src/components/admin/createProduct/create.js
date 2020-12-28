@@ -1,8 +1,19 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
+
 import axios from 'axios'
 import '../admin.css'
 
-const CreateProduct = () => {
+const CreateProduct = ({history}) => {
+
+
+
+  const admin = localStorage.getItem("admin")
+
+  useEffect(() => {
+    if(  !admin ){
+      history.push('/')
+    }
+  })
 
 const [product, setProduct] = useState({
   nombre: "",
@@ -59,7 +70,14 @@ const { nombre, descripcion, valor, tipo_moneda, categoria, imagen } = product;
                 message: product.data.message,
                 clase: "text-center text-success mb-1'"
             }) 
-           
+            setProduct({ 
+              nombre: "",
+              descripcion: "",
+              valor: 0,
+              tipo_moneda: "",
+              categoria: "",
+              imagen: ""
+             })
           
            setMsj(true)
         })

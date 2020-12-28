@@ -14,7 +14,6 @@ export const DataProvider = ({ children }) => {
 
     const [products, setProducts] = useState([])
 
-    let mensaje;
 
     const GetProducts = () => {
 
@@ -29,38 +28,6 @@ export const DataProvider = ({ children }) => {
 
     }
 
-    const LoginUser = (datos) => {
-
-        axios.post('http://localhost:4000/user/login', datos)
-        .then((user) => {
-             
-            localStorage.setItem("token", user.data.token)
-            setDataUser({
-                "id": user.data.id,
-                "admin": user.data.admin,
-                "email": user.data.email,
-                "token": user.data.token
-            })
-            console.log(dataUser)
-        })
-        .catch((err) => {
-            console.log(err.response.data.error ? err.response.data.error : err.response.data.message)
-        })
-
-    } 
-
-    const RegisterUser = (datos) => {
-
-        axios.post('http://localhost:4000/user/create', datos)
-        .then((user) => {
-           mensaje =  user.data.message
-           console.log(mensaje)
-        })
-        .catch((err) => {
-            
-           console.log(err)
-        })
-    }
 
 
     useEffect(() => {
@@ -71,10 +38,11 @@ export const DataProvider = ({ children }) => {
      
   return(
       <DataContext.Provider value={{
-        LoginUser,
+  
         dataUser,
-        RegisterUser,
-        products
+        products,
+        setDataUser
+
         
       }}>
           {children}

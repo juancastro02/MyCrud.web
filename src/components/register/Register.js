@@ -1,11 +1,28 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from "react-router-dom";
-import { DataContext } from '../../context/DataContext'
+import axios from 'axios'
+
 import '../../styles.css'
 
-const Register = () => {
+const Register = ({history}) => {
 
-const [user, setUser] = useState({
+  const token = localStorage.getItem("token")
+
+  useEffect(() => {
+   
+    if( token){
+      history.push('/')
+    }
+    
+  })
+
+  const [msj,setMsj] = useState(false)
+  const [notificacion, SetNot] = useState({
+    message: "",
+    clase: ""
+  })  
+
+const [users, setUser] = useState({
     email: "",
     password: "",
     passwordConfirm: ""
@@ -13,18 +30,25 @@ const [user, setUser] = useState({
 const [err, setError] = useState(false)
 const [passwordErr, setPassword] = useState(false)  
 
-const { email, password, passwordConfirm } = user;
+const { email, password, passwordConfirm } = users;
 
-const { RegisterUser } = useContext( DataContext )
+// const { RegisterUser } = useContext( DataContext )
+
+
+const { message, clase } = notificacion
 
   const OnChange = (e) => {
     setUser({
-      ...user,
+      ...users,
       [e.target.name]: e.target.value,
     });
 
     setError(false)
     setPassword(false)
+    SetNot({
+      message: "",
+      clase: ""
+  })
    
   };
 
@@ -38,7 +62,22 @@ const { RegisterUser } = useContext( DataContext )
 
   const handleCreate = () => {
     if(email && password && passwordConfirm && password === passwordConfirm){
-      RegisterUser(user)
+      axios.post('http://localhost:4000/user/create', users)
+      .then((user) => {
+        SetNot({
+          message: user.data.message,
+          clase: "text-center text-success mb-1'"
+      }) 
+      })
+      .catch((err) => {
+        SetNot({
+          message: err.response.data.message,
+          clase: "text-center text-danger mb-1'"
+      }) 
+      // message = err.response.data.message
+      console.log(err)
+      setMsj(true)
+      })
     }
   }
 
@@ -97,6 +136,7 @@ const { RegisterUser } = useContext( DataContext )
         <br/>
       {err && <div className='mx-auto text-center'><span className='text-center text-danger mb-1'>Los campos son obligatorios</span></div>}
       {passwordErr && <div className='mx-auto text-center' ><span className='text-center text-danger mb-1'>Las contraseñas no coinciden</span></div>}
+      {msj && <div className='mx-auto text-center'><span className={clase}>{message}</span></div>}
         <Link to={'/login'} className="enlace-cuenta">
                Tenes una cuenta? Inicia Sesión
         </Link>

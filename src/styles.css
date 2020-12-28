@@ -80,8 +80,8 @@ a {
   background-color: transparent;
 }
 .form-usuario {
-  /* background-color: #47fa09; */
-  background-image: url("https://www.lahuertica.com/assets/sliderImages/1.jpg");
+  background-color: #47fa09;
+  /* background-image: url("https://www.lahuertica.com/assets/sliderImages/1.jpg"); */
   height: 100vh;
   min-height: 800px;
   display: flex;

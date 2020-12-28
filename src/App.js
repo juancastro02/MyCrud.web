@@ -7,6 +7,8 @@ import Reset from './components/resetPass/Reset'
 import CreateProduct from './components/admin/createProduct/create'
 import UpdateProduct from './components/admin/updateProduct/update'
 import DeleteProduct from './components/admin/deleteProduct/delete'
+import Home from './components/Home/Home'
+import Data from './components/dataOfProduct/data'
 import { DataProvider } from './context/DataContext'
 import { BrowserRouter, Route } from 'react-router-dom';
 
@@ -42,7 +44,12 @@ function App() {
       />
 
       <Route 
-       exact path ='/'
+      exact path='/product/:id'
+      render={({match}) => <Data id={match.params.id}/>}
+      />
+
+      <Route 
+       exact path ='/create'
        component={CreateProduct}
       /> 
 
@@ -54,6 +61,11 @@ function App() {
       <Route 
       exact path='/delete'
       component= { DeleteProduct }
+      />
+
+      <Route 
+      exact path='/'
+      component = {Home}
       />
 
     </div>

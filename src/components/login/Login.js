@@ -1,25 +1,50 @@
-import React,{useState, useContext} from 'react'
+import React,{useState, useContext, useEffect} from 'react'
 import { Link } from "react-router-dom";
 import { DataContext } from '../../context/DataContext'
+import axios from 'axios'
 import '../../styles.css'
 
-const Login = () => {
-const [user, setUser] = useState({
+const Login = ({history}) => {
+
+
+  const token = localStorage.getItem("token")
+
+useEffect(() => {
+ 
+  if( token){
+    history.push('/')
+  }
+  
+})
+
+const [msj,setMsj] = useState(false)
+const [notificacion, SetNot] = useState({
+  message: "",
+  clase: ""
+})
+
+const { message, clase } = notificacion
+const [users, setUser] = useState({
     email: "",
     password: ""
   });
 const [err, setError] = useState(false)
 
-const { email, password } = user;
+const { email, password } = users;
 
-const { LoginUser } = useContext( DataContext )
+ const { setDataUser } = useContext( DataContext )
+
 
   const OnChange = (e) => {
     setUser({
-      ...user,
+      ...users,
       [e.target.name]: e.target.value,
     });
     setError(false)
+    SetNot({
+      message: "",
+      clase: ""
+  })
   };
 
   const onSubmit = (e) => {
@@ -30,7 +55,36 @@ const { LoginUser } = useContext( DataContext )
 
   const handleLogin = () => {
     if(email && password){
-      LoginUser(user)
+      axios.post('http://localhost:4000/user/login', users)
+        .then((user) => {
+          SetNot({
+            message: user.data.message,
+            clase: "text-center text-success mb-1'"
+        })  
+            localStorage.setItem("token", user.data.token)
+            localStorage.setItem("email", user.data.email)
+            if(user.data.admin === 1){
+              localStorage.setItem("admin", user.data.admin)
+            }
+            
+
+            setDataUser({
+                "id": user.data.id,
+                "admin": user.data.admin,
+                "email": user.data.email,
+                "token": user.data.token
+            })
+            setMsj(true)
+        })
+        .catch((err) => {
+          SetNot({
+            message: err.response.data.message,
+            clase: "text-center text-danger mb-1'"
+        }) 
+        // message = err.response.data.message
+        console.log(err)
+        setMsj(true)
+        })
     }
     
   }
@@ -76,6 +130,7 @@ const { LoginUser } = useContext( DataContext )
         </form>
         <br/>
         {err && <div className='mx-auto text-center'><span className='text-center text-danger mb-1'>Los campos son obligatorios</span></div>}
+        {msj && <div className='mx-auto text-center'><span className={clase}>{message}</span></div>}
           <Link to={"/register"} className="enlace-cuenta">No tenes cuenta? Registrate</Link>
           <Link to={"/forgot"} className="enlace-cuenta">Olvidaste tu contraseña?</Link>
       </div>

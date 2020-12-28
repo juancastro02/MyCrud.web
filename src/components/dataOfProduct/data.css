@@ -1,0 +1,17 @@
+.contenedorCard {
+  display: "flex";
+  align-items: center;
+  justify-content: center;
+}
+
+.imagenProd {
+  width: 30rem;
+  height: 30rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.boton {
+  display: flex;
+  flex-direction: row-reverse;
+}

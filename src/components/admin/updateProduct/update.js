@@ -1,9 +1,20 @@
-import React,{useState, useContext} from 'react'
+import React,{useState, useContext, useEffect} from 'react'
 import { DataContext } from '../../../context/DataContext'
 import axios from 'axios'
 import '../admin.css'
 
-const UpdateProduct = () => {
+const UpdateProduct = ({history}) => {
+
+ 
+
+  const admin = localStorage.getItem("admin")
+
+  useEffect(() => {
+    if(  !admin ){
+      history.push('/')
+    }
+  })
+
 
 const [product, setProduct] = useState({
   id: "",  
