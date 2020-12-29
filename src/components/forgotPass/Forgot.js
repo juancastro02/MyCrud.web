@@ -33,7 +33,7 @@ const { email } = user;
 
   const handleSend = () => {
     if(email){
-        console.log(user)
+      
         axios.post('http://localhost:4000/user/forgot', user)
         .then((user) => {
             SetNot({

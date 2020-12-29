@@ -12,10 +12,10 @@ const Home = () => {
       <div className='backgroung ' >
         <div className='home ' >
       {  products[0] && products.map((p) => (
-        <Link to={`/product/${p.id}` } style={{textDecoration: "none"}} >
-          <div class="card product" style={{width: "15rem", height: "23rem"}} >
-          <img class="card-img-top" src={p.imagen} alt='..' style={{height: "14rem"}}/>
-          <div class="card-body">
+        <Link key={p.id} to={`/product/${p.id}` } style={{textDecoration: "none"}} >
+          <div  className="card product" style={{width: "15rem", height: "23rem"}} >
+          <img className="card-img-top" src={p.imagen} alt='..' style={{height: "14rem"}}/>
+          <div className="card-body">
       <h5 className="card-text fondo" >{p.nombre}</h5>
       <p className="card-text textoChico" >{ p.descripcion.slice(0, 15) + '...' }</p>
       <h5 className="card-text precio" >{p.tipo_moneda + " " +p.valor}</h5>
@@ -39,6 +39,9 @@ const Home = () => {
           </div>
           </Link> )) 
       } 
+      {
+        !products[0] && <h1 style={{color: "white", backgroundColor: "black", borderRadius: "15px", marginTop: "3rem", padding: "2rem"}} > No hay productos para mostrar! </h1>
+      }
         </div>
         </div>
     )

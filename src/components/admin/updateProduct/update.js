@@ -88,6 +88,12 @@ const { nombre, descripcion, valor, tipo_moneda, categoria, imagen } = product;
   }
 
   const handleSend = () => {
+
+    if(!nombre || !descripcion || !valor || !tipo_moneda || !categoria || !imagen ){
+      return setError(true)
+    }
+    
+
     if(nombre && descripcion && valor && tipo_moneda && categoria && imagen){
 
       const data = {
@@ -132,8 +138,8 @@ const { nombre, descripcion, valor, tipo_moneda, categoria, imagen } = product;
 
  return (
     <div style={{paddingTop: "0"}} className="formAdmin">
-<table class="table">
-  <thead style={{backgroundColor: "black", color: "white"}} class="thead-dark">
+<table className="table">
+  <thead style={{backgroundColor: "black", color: "white"}} className="thead-dark">
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Nombre</th>
@@ -151,7 +157,7 @@ const { nombre, descripcion, valor, tipo_moneda, categoria, imagen } = product;
       <td>{producto.nombre}</td>
       <td>{producto.tipo_moneda + " " + producto.valor}</td>
       <td>{producto.categoria}</td>
-      <td> <button type="button" onClick={() => handleSearch(producto.id, producto.nombre, producto.descripcion, producto.valor, producto.tipo_moneda, producto.categoria, producto.imagen)} class="btn-admin btn-warning">Modificar</button> </td>
+      <td> <button type="button" onClick={() => handleSearch(producto.id, producto.nombre, producto.descripcion, producto.valor, producto.tipo_moneda, producto.categoria, producto.imagen)} className="btn-admin btn-warning">Modificar</button> </td>
     </tr>
     ))}
 
@@ -210,12 +216,12 @@ const { nombre, descripcion, valor, tipo_moneda, categoria, imagen } = product;
           <br/>
           <div className="campo-form">
         
-  <input  class="form-check-input" type="radio" onChange={OnChange} name="tipo_moneda" id="USD" value="USD"/>
-  <label class="form-check-label" for="USD"> USD </label>
+  <input  className="form-check-input" type="radio" onChange={OnChange} name="tipo_moneda" id="USD" value="USD"/>
+  <label className="form-check-label" for="USD"> USD </label>
 
 
-  <input   class="form-check-input" type="radio" onChange={OnChange} name="tipo_moneda" id="EUR" value="EUR" />
-  <label class="form-check-label" for="EUR"> EUR </label>
+  <input   className="form-check-input" type="radio" onChange={OnChange} name="tipo_moneda" id="EUR" value="EUR" />
+  <label className="form-check-label" for="EUR"> EUR </label>
           </div>
 
           <h4 htmlFor="text" > Categoria del producto </h4>
@@ -223,12 +229,12 @@ const { nombre, descripcion, valor, tipo_moneda, categoria, imagen } = product;
           <div className="campo-form">
       
         
-  <input class="form-check-input" type="radio" onChange={OnChange} name="categoria" id="Fruta" value="Fruta"/>
-  <label class="form-check-label" for="Fruta"> Fruta </label>
+  <input className="form-check-input" type="radio" onChange={OnChange} name="categoria" id="Fruta" value="Fruta"/>
+  <label className="form-check-label" for="Fruta"> Fruta </label>
 
 
-  <input class="form-check-input" type="radio" onChange={OnChange} name="categoria" id="Verdura" value="Verdura" />
-  <label class="form-check-label" for="Verdura"> Verdura </label>
+  <input className="form-check-input" type="radio" onChange={OnChange} name="categoria" id="Verdura" value="Verdura" />
+  <label className="form-check-label" for="Verdura"> Verdura </label>
           </div>
 
           <h4 htmlFor="text" > URL de la imagen del producto</h4>
@@ -247,7 +253,7 @@ const { nombre, descripcion, valor, tipo_moneda, categoria, imagen } = product;
           <input
             style={{backgroundColor: "black", color: "white"}}
             value='Enviar'
-            type="submit"
+            type="reset"
             className="btn btn-primario btn-block"
             onClick={(e)=>handleSend(e)}
           />

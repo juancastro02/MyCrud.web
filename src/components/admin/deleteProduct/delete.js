@@ -60,8 +60,8 @@ const { products } = useContext( DataContext )
 
  return (
     <div style={{paddingTop: "0"}} className="formTabla">
-<table class="table">
-  <thead style={{backgroundColor: "black", color: "white"}} class="thead-dark">
+<table className="table">
+  <thead style={{backgroundColor: "black", color: "white"}} className="thead-dark">
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Nombre</th>
@@ -78,7 +78,7 @@ const { products } = useContext( DataContext )
       <td>{producto.nombre}</td>
       <td>{producto.tipo_moneda + " " + producto.valor}</td>
       <td> 
-      <button type="button" onClick={() => handleSearch(producto.id)} class="btn-admin btn-danger" data-toggle="modal" data-target="#exampleModal">
+      <button type="button" onClick={() => handleSearch(producto.id)} className="btn-admin btn-danger" data-toggle="modal" data-target="#exampleModal">
         Eliminar
       </button>
       </td>
@@ -90,19 +90,19 @@ const { products } = useContext( DataContext )
   </tbody>
 </table>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Estas seguro de eliminar este producto?</h5>
+<div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel">Estas seguro de eliminar este producto?</h5>
 
       </div>
-      <div class="modal-body">
+      <div className="modal-body">
         Se eliminara todos los datos del producto de la base de datos.
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Volver</button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showModal" data-dismiss="modal" onClick={handleSend} >Si, eliminar</button>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-dismiss="modal">Volver</button>
+        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#showModal" data-dismiss="modal" onClick={handleSend} >Si, eliminar</button>
       </div>
     </div>
   </div>
@@ -112,15 +112,15 @@ const { products } = useContext( DataContext )
 
 
 
-<div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showModal" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
+<div className="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showModal" aria-hidden="true">
+  <div className="modal-dialog" role="document">
+    <div className="modal-content">
 
-      <div class="modal-body">
+      <div className="modal-body">
    <span className={clase}>{message}</span>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

@@ -32,8 +32,6 @@ const [passwordErr, setPassword] = useState(false)
 
 const { email, password, passwordConfirm } = users;
 
-// const { RegisterUser } = useContext( DataContext )
-
 
 const { message, clase } = notificacion
 
@@ -64,10 +62,12 @@ const { message, clase } = notificacion
     if(email && password && passwordConfirm && password === passwordConfirm){
       axios.post('http://localhost:4000/user/create', users)
       .then((user) => {
+
         SetNot({
           message: user.data.message,
           clase: "text-center text-success mb-1'"
       }) 
+      setMsj(true)
       })
       .catch((err) => {
         SetNot({
@@ -75,7 +75,7 @@ const { message, clase } = notificacion
           clase: "text-center text-danger mb-1'"
       }) 
       // message = err.response.data.message
-      console.log(err)
+    
       setMsj(true)
       })
     }

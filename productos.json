@@ -1,0 +1,59 @@
+{
+    "Anana": {
+        "valor": 20,
+        "tipo_moneda": "EUR",
+        "descripcion": "Anana importada",
+        "nombre": "Anana",
+        "categoria": "Fruta",
+        "imagen": "https://servialgusto.com/wp-content/uploads/2020/10/4013-600x600.jpg"
+    },
+    "Lima Limon": {
+        "valor": 10,
+        "tipo_moneda": "USD",
+        "descripcion": "Lima jugosa",
+        "nombre": "Lima",
+        "categoria": "Verdura",
+        "imagen": "https://servialgusto.com/wp-content/uploads/2020/10/4017-600x600.jpg"
+    },
+    "Coco": {
+        "valor": 35,
+        "tipo_moneda": "EUR",
+        "descripcion": "Coco grande",
+        "nombre": "Coco",
+        "categoria": "Fruta",
+        "imagen": "https://servialgusto.com/wp-content/uploads/2020/10/4010-600x600.jpg"
+    },
+    "Ají": {
+        "valor": 12,
+        "tipo_moneda": "USD",
+        "descripcion": "Ají picante",
+        "nombre": "Aji",
+        "categoria": "Verdura",
+        "imagen": "https://servialgusto.com/wp-content/uploads/2020/10/4045-600x600.jpg"
+    },
+    "Brocoli":{
+        "valor": 29,
+        "tipo_moneda": "EUR",
+        "descripcion": "Brocoli pesado",
+        "nombre": "Brocoli",
+        "categoria": "Verdura",
+        "imagen": "https://servialgusto.com/wp-content/uploads/2020/10/4036-600x600.jpg"
+    },
+    "Berenjena": {
+        "valor": 18,
+        "tipo_moneda": "EUR",
+        "descripcion": "Berenjena morada pesada",
+        "nombre": "Berenjena",
+        "categoria": "Verdura",
+        "imagen": "https://servialgusto.com/wp-content/uploads/2020/10/4028-600x600.jpg"
+    },
+    "Kiwi": {
+        "valor": 30,
+        "tipo_moneda": "USD",
+        "descripcion": "Kiwi riquisimo",
+        "nombre": "Kiwi",
+        "categoria": "Fruta",
+        "imagen": "https://servialgusto.com/wp-content/uploads/2020/10/4081-600x600.jpg"
+    }
+
+}

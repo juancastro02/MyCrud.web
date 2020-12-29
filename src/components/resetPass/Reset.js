@@ -39,7 +39,7 @@ const { password, passwordConfirm } = user;
 
   const handleSend = () => {
     if(password && passwordConfirm ){
-        console.log(user)
+      
         axios.post(`http://localhost:4000/user/reset/${id}`, user)
         .then((user) => {
             SetNot({

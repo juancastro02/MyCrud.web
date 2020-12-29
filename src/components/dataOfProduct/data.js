@@ -24,16 +24,16 @@ const Data = ({id}) => {
 
     return ( 
         <div className='backgroung' style={{paddingTop: "5rem"}} >
-<div class="card mb-3 contenedorCard"  >
+<div className="card mb-3 contenedorCard"  >
 
-  <img class="card-img-top " style={{width: "20rem", height: "20rem"}} src={product[0] && product[0].imagen} alt=".." />
-  <div class="card-body">
-    <h5 class="card-title">{product[0] && product[0].nombre}</h5>
-    <p class="card-text">{product[0] && product[0].descripcion}</p>
-    <p class="card-text">{product[0] && product[0].tipo_moneda + " " +product[0].valor}</p>
-    <p class="card-text"><small class="text-muted">Categoria: {product[0] && product[0].categoria}</small></p>
+  <img className="card-img-top " style={{width: "20rem", height: "20rem"}} src={product[0] && product[0].imagen} alt=".." />
+  <div className="card-body">
+    <h5 className="card-title">{product[0] && product[0].nombre}</h5>
+    <p className="card-text">{product[0] && product[0].descripcion}</p>
+    <p className="card-text">{product[0] && product[0].tipo_moneda + " " +product[0].valor}</p>
+    <p className="card-text"><small className="text-muted">Categoria: {product[0] && product[0].categoria}</small></p>
     <Link to='/' >
-    <button type="button" class="btn btn-danger boton">Volver</button>
+    <button type="button" className="btn btn-danger boton">Volver</button>
     </Link>
   </div>
 

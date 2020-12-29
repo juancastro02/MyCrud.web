@@ -82,7 +82,7 @@ const { email, password } = users;
             clase: "text-center text-danger mb-1'"
         }) 
         // message = err.response.data.message
-        console.log(err)
+       
         setMsj(true)
         })
     }
